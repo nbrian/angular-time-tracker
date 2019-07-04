@@ -1,12 +1,21 @@
-<h1>Test</h1>
-<form [formGroup]="loginForm" (ngSubmit)="submit()">
-  <!-- <mat-form-field>
-    <input matInput placeholder="Username" formControlName="username" required>
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Password" formControlName="password" required>
-  </mat-form-field> -->
-  <!-- <input type="text" name="username" formControlName="username" required>
-  <input type="password" name="password" formControlName="password" required>
-  <input type="submit" value="Login"> -->
-</form>
+<mat-card class="login-container">
+  <div class="logo">
+    <mat-icon aria-hidden="false" aria-label="Leave Tracker">directions_run</mat-icon>
+    <h2>Leave Tracker</h2>
+  </div>
+  <form [formGroup]="loginForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Username</mat-label>
+      <input matInput formControlName="username" required>
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint>Hint</mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password" required>
+      <mat-icon matSuffix>vpn_key</mat-icon>
+      <mat-hint>Hint</mat-hint>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="submit()">Primary</button>
+  </form>
+</mat-card>

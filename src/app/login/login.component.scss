@@ -1,0 +1,13 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    text-align: center;
+    .logo mat-icon{
+        zoom: 3;
+    }
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
