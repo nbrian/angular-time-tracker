@@ -2,7 +2,9 @@ import { Injectable, Inject } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class UrlInterceptor implements HttpInterceptor {
   constructor(@Inject('BASE_API_URL') private baseUrl: string) {}
 
