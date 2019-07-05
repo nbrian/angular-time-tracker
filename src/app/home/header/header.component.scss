@@ -1,12 +1,23 @@
-.spacer {
-    flex: 1 1 auto;
-}
-.logo {
-    zoom: 2;
-    margin-right: 10px;
-}
-.name {
-    font-size: 16px;
-    margin-right: 10px;
-    font-weight: 100;
+.header-container {
+    max-width: 73rem;
+    display: flex;
+    box-sizing: border-box;
+    padding: 0 16px;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    white-space: nowrap;
+    margin: 0 auto;
+    .spacer {
+        flex: 1 1 auto;
+    }
+    .logo {
+        zoom: 2;
+        margin-right: 10px;
+    }
+    .name {
+        font-size: 16px;
+        margin-right: 10px;
+        font-weight: 100;
+    }
 }

@@ -1,21 +1,25 @@
 .users-container {
+    max-width: 70rem;
+    margin: 20px auto;
+    
     .action-container {
         .mat-form-field {
             font-size: 14px;
             width: 100%;
         }
     }
-    table {
-        width: 100%;
-        .mat-row:hover {
-            background-color: #F3F3F3;
+    .table-container {
+        height: 400px;
+        overflow: auto;
+        table {
+            width: 100%;
+            .mat-row:hover {
+                background-color: #F3F3F3;
+            }
         }
     }
 }
-.table-container {
-    height: 400px;
-    overflow: auto;
-}
+
 
 .active {
     color: green;
