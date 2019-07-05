@@ -11,7 +11,7 @@ export class UsersService {
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>('time-tracker/api/users').pipe(map(res => {
+    return this.http.get<User[]>('time-tracker-api/users').pipe(map(res => {
       this.users = res;
       return res;
     }));
@@ -21,8 +21,16 @@ export class UsersService {
     this.users.push(user);
   }
 
+  getUser(id: number): User {
+    return this.users.find(u => u.id === id);
+  }
+
   getCachedUsers(): User[] {
     return this.users;
+  }
+
+  updateCachedUsers(users: User[]) {
+    this.users = users;
   }
 
 

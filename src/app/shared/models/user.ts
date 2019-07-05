@@ -3,5 +3,5 @@ export interface User {
     name: string;
     clockIn: string;
     clockOut: string;
-    activate: boolean;
+    active: boolean;
 }

@@ -17,8 +17,12 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
+  isAuthenticated(): boolean {
+    return this.credentials ? !!this.credentials.jwt : false;
+  }
+
   login(username: string, password: string): Observable<Credentials> {
-    return this.http.post<Credentials>('time-tracker/login', {username, password});
+    return this.http.post<Credentials>('auth/login', {username, password});
   }
 
   logout(): Observable<string> {

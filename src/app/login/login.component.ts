@@ -1,7 +1,9 @@
-import { AuthService } from './../shared/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackbarComponent } from '../snackbar/snackbar.component';
+import { AuthService } from './../shared/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +14,11 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loginCredential: {username: string, password: string};
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private route: Router) { }
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private route: Router,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -23,12 +29,16 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
-    console.log('login', this.loginForm.value);
     this.authService.login(this.loginForm.value.username, this.loginForm.value.password).subscribe(user => {
       this.authService.updateCredentials(user);
-      console.log('user', user);
-      this.route.navigate(['/home']);
+      this.route.navigate(['home']);
+    }, error => {
+      this.openSnackBar(error.error.error.msg);
     });
+  }
+
+  openSnackBar(message) {
+    this.snackBar.openFromComponent(SnackbarComponent, {announcementMessage: message, data: message, duration: 3000});
   }
 
 }

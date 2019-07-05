@@ -1,23 +1,19 @@
 <mat-card class="login-container">
   <div>
     <div class="logo">
-      <mat-icon aria-hidden="false" aria-label="Leave Tracker"
-        >directions_run</mat-icon
-      >
-      <h2>Leave Tracker</h2>
+      <mat-icon color="primary" aria-hidden="false" aria-label="Time Tracker">watch_later</mat-icon>
+      <h2>Time Tracker</h2>
     </div>
     <form [formGroup]="loginForm">
       <mat-form-field appearance="outline">
         <mat-label>Username</mat-label>
         <input matInput formControlName="username" required />
         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-        <mat-hint>Hint</mat-hint>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Password</mat-label>
         <input matInput type="password" formControlName="password" required />
         <mat-icon matSuffix>vpn_key</mat-icon>
-        <mat-hint>Hint</mat-hint>
       </mat-form-field>
       <button mat-raised-button color="primary" (click)="submit()">
         Login

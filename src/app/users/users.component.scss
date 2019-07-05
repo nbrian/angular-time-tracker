@@ -1,10 +1,22 @@
-table {
-    width: 100%;
+.users-container {
+    .action-container {
+        .mat-form-field {
+            font-size: 14px;
+            width: 100%;
+        }
+    }
+    table {
+        width: 100%;
+        .mat-row:hover {
+            background-color: #F3F3F3;
+        }
+    }
 }
-.mat-form-field {
-    font-size: 14px;
-    width: 100%;
+.table-container {
+    height: 400px;
+    overflow: auto;
 }
+
 .active {
     color: green;
 }

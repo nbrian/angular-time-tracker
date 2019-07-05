@@ -2,9 +2,8 @@
   <button color="primary" (click)="back()" mat-icon-button aria-label="Back">
       <mat-icon>arrow_back_ios</mat-icon>
     </button>
-  <div>
-    <form [formGroup]="userForm">
-
+  <div *ngIf="isNew; else view">
+    <form [formGroup]="userForm" class="user-form">
       <mat-form-field appearance="outline">
         <mat-label>Username</mat-label>
         <input matInput formControlName="username" required />
@@ -20,4 +19,24 @@
       </button>
     </form>
   </div>
+  <ng-template #view>
+    <mat-list class="user-view">
+      <mat-list-item>
+        <mat-label class="label">Username: </mat-label>
+        {{user.name}}
+      </mat-list-item>
+      <mat-list-item>
+        <mat-label class="label">Clock In: </mat-label> 
+        {{user.clockIn ? user.clockIn : '-'}}
+      </mat-list-item>
+      <mat-list-item>
+        <mat-label class="label">Clock In: </mat-label>
+        {{user.clockOut ? user.clockOut : '-'}}
+      </mat-list-item>
+      <mat-list-item>
+        <mat-label class="label">Active: </mat-label> 
+        {{user.active}}
+      </mat-list-item>
+    </mat-list>
+  </ng-template>
 </mat-card>

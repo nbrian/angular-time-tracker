@@ -1,37 +1,50 @@
-<button mat-raised-button (click)="addUser()"> Add User </button>
-<mat-form-field>
-  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-</mat-form-field>
-
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef> Id </th>
-    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="clockIn">
-    <th mat-header-cell *matHeaderCellDef> Clock In </th>
-    <td mat-cell *matCellDef="let element"> {{element.clockIn}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="clockOut">
-    <th mat-header-cell *matHeaderCellDef> Clock Out </th>
-    <td mat-cell *matCellDef="let element"> {{element.clockOut}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="active">
-      <th mat-header-cell *matHeaderCellDef> Active </th>
-      <td mat-cell *matCellDef="let element">  
-        <mat-icon [ngClass]="element.active ? 'active' : 'inactive'" >lens</mat-icon>
-      </td>
-    </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+<div class="users-container">
+  <div class="action-container">
+    <button mat-raised-button color="accent" (click)="addUser()"> Add User </button>
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+  
+  <div class="table-container">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Id </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="clockIn">
+        <th mat-header-cell *matHeaderCellDef> Clock In </th>
+        <td mat-cell *matCellDef="let element"> {{element.clockIn ? element.clockIn : '-'}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="clockOut">
+        <th mat-header-cell *matHeaderCellDef> Clock Out </th>
+        <td mat-cell *matCellDef="let element"> {{element.clockOut ? element.clockOut : '-'}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="active">
+        <th mat-header-cell *matHeaderCellDef> Active </th>
+        <td mat-cell *matCellDef="let element">  
+          <mat-icon [ngClass]="element.active ? 'active' : 'inactive'" >lens</mat-icon>
+        </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let element; let i = index;">
+          <button mat-icon-button aria-label="Delete" (click)="removeUser(i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="viewUser(row)"></tr>
+    </table>
+  </div>
+</div>

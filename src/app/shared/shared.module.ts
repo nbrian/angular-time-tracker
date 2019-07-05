@@ -15,7 +15,6 @@ import { MaterialModule } from './material.module';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    // HomeModule,
     MaterialModule
   ],
   exports: [
@@ -24,12 +23,7 @@ import { MaterialModule } from './material.module';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MaterialModule,
-    // HeaderComponent, SidebarComponent, FooterComponent, UsersComponent
-    // HomeModule
   ],
-  declarations: [
-    // HeaderComponent, SidebarComponent, FooterComponent, UsersComponent,
-    // HomeModule
-  ]
+  declarations: []
 })
 export class SharedModule { }

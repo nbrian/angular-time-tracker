@@ -9,11 +9,13 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
 import { UsersService } from './shared/services/users.service';
+import { SnackbarComponent } from './snackbar/snackbar.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SnackbarComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +32,7 @@ import { UsersService } from './shared/services/users.service';
       multi: true
     }
   ],
+  entryComponents: [SnackbarComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

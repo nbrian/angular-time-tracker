@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UsersService } from '../shared/services/users.service';
 import { User } from '../shared/models/user';
 import { MatTableDataSource } from '@angular/material/table';
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class UsersComponent implements OnInit {
   users: User[];
-  displayedColumns: string[] = ['id', 'name', 'clockIn', 'clockOut', 'active'];
+  displayedColumns: string[] = ['id', 'name', 'clockIn', 'clockOut', 'active', 'actions'];
   dataSource;
 
   constructor(private userService: UsersService, private authService: AuthService, private route: Router) { }
@@ -22,8 +22,12 @@ export class UsersComponent implements OnInit {
       this.getUsers();
     } else {
       this.users = this.userService.getCachedUsers().filter(user => user.id !== this.authService.getCredentials().id);
-      this.dataSource  = new MatTableDataSource(this.users);
+      this.dataSource = new MatTableDataSource(this.users);
     }
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   getUsers() {
@@ -34,14 +38,18 @@ export class UsersComponent implements OnInit {
   }
 
   addUser() {
-    this.route.navigate(['/home/create']);
+    this.route.navigate(['home/users/create']);
   }
 
-  viewUser(id) {
-    this.route.navigate([`/home/${id}`]);
+  viewUser(user: User) {
+    this.route.navigate([`home/users/${user.id}`]);
   }
 
-  removeUser() {
-
+  removeUser(index: number) {
+    const data = this.dataSource.data;
+    data.splice(index, 1);
+    this.dataSource.data = data;
+    
+    this.userService.updateCachedUsers(data);
   }
 }
